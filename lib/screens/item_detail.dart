@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:e_commerce_mob/widgets/left_drawer.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
-import 'dart:convert';
 
 class ItemDetailPage extends StatefulWidget {
     const ItemDetailPage({Key? key}) : super(key: key);

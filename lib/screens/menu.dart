@@ -43,7 +43,6 @@ class MyHomePage extends StatelessWidget {
                                     ),
                                 ),
                             ),
-                            // Grid layout
                             GridView.count(
                                 primary: true,
                                 padding: const EdgeInsets.all(20),
@@ -74,7 +73,7 @@ class ShopItem {
 class ShopCard extends StatelessWidget {
     final ShopItem item;
 
-    const ShopCard(this.item, {super.key}); // Constructor
+    const ShopCard(this.item, {super.key});
 
     @override
     Widget build(BuildContext context) {
@@ -83,24 +82,36 @@ class ShopCard extends StatelessWidget {
             color: item.color,
             child: InkWell(
                 onTap: () async {
-                    // Tombol Lihat Item
                     if (item.name == "Lihat Item") {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                                content: Text("Kamu telah menekan tombol Lihat Daftar Produk"),
+                            ),
+                        );
                         Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) => const ItemDetailPage(),
                             ));
                     }
-                    // Tombol Tambah Item
                     else if (item.name == "Tambah Item") {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                                content: Text("Kamu telah menekan tombol Tambah Produk"),
+                            ),
+                        );
                         Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) => const ItemEntryFormPage(),
                             ));
                     }
-                    // Tombol Logout
                     else if (item.name == "Logout") {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                                content: Text("Kamu telah menekan tombol Logout"),
+                            ),
+                        );
                         final response = await request.logout(
                             "http://127.0.0.1:8000/logout/");
                         String message = response["message"];

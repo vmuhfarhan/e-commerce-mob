@@ -94,6 +94,62 @@ Tugas 8
     Navigasi pada aplikasi dengan banyak halaman di Flutter biasanya diatur menggunakan Navigator dan MaterialPageRoute. Pada aplikasi ini, Navigator.push digunakan untuk berpindah ke halaman baru, sedangkan Navigator.pushReplacement digunakan untuk mengganti halaman saat ini tanpa bisa kembali ke halaman sebelumnya dengan tombol back.
 
 
+Tugas 9
+1. Jelaskan mengapa kita perlu membuat model untuk melakukan pengambilan ataupun pengiriman data JSON? Apakah akan terjadi error jika kita tidak membuat model terlebih dahulu?
+- Model membantu dalam strukturisasi data dan type safety
+- Model memudahkan konversi data JSON ke objek Dart dan sebaliknya
+- Tanpa model masih bisa berjalan, tapi:, Data akan berupa dynamic/Map yang rawan error, Tidak ada validasi tipe data, Sulit mengetahui struktur data yang diharapkan, Tidak ada autocomplete dari IDE
+
+2. Jelaskan fungsi dari library http yang sudah kamu implementasikan pada tugas ini
+- Menyediakan fungsi untuk melakukan HTTP request (GET, POST, PUT, DELETE)
+- Menghandle komunikasi client-server
+- Memudahkan pengiriman dan penerimaan data dari web API
+- Mengatur headers, body, dan response dari request
+- Mendukung async/await untuk operasi asynchronous
+
+3. Jelaskan fungsi dari CookieRequest dan jelaskan mengapa instance CookieRequest perlu untuk dibagikan ke semua komponen di aplikasi Flutter.
+- CookieRequest mengelola session dan cookies untuk autentikasi
+- Menyimpan informasi login user
+- Instance perlu dibagikan ke semua komponen karena:
+    - Menjaga state login konsisten di seluruh aplikasi
+    - Memastikan session yang sama digunakan di setiap request
+    - Menghindari multiple login/logout yang tidak perlu
+    - Memudahkan pengecekan status autentikasi
+
+4. Jelaskan mekanisme pengiriman data mulai dari input hingga dapat ditampilkan pada Flutter.
+- Input data di form Flutter
+- Data dikumpulkan dalam Map/objek model
+- Data dikonversi ke JSON
+- CookieRequest mengirim data ke Django via HTTP POST
+- Django menerima dan memproses data
+- Django mengirim response ke Flutter
+- Flutter mengparse response JSON
+- Data ditampilkan di UI Flutter
+
+5. Jelaskan mekanisme autentikasi dari login, register, hingga logout. Mulai dari input data akun pada Flutter ke Django hingga selesainya proses autentikasi oleh Django dan tampilnya menu pada Flutter.
+    a. Register:
+    - User input username/password di Flutter
+    - Data dikirim ke endpoint Django /register/
+    - Django validasi dan create user baru
+    - Response sukses/gagal dikirim ke Flutter
+    - Flutter redirect ke login jika sukses
+
+    b. Login:
+    - User input credentials
+    - Data dikirim ke endpoint Django /login/
+    - Django autentikasi user
+    - Jika valid, Django create session
+    - Cookie session dikirim ke Flutter
+    - Flutter simpan cookie di CookieRequest
+    - User diarahkan ke homepage
+
+    c. Logout:
+    - User klik logout
+    - Request ke endpoint Django /logout/
+    - Django hapus session
+    - Cookie dihapus dari Flutter
+    - User diarahkan ke login page
+
 
 
 
